@@ -1,0 +1,13 @@
+<div class="container">
+  <ul>
+    <li class="list-group-item list-group-item-primary">
+      <span>Treeview recursive</span>
+    </li>
+    <li
+      *ngFor="let node of TreeData"
+      class="list-group-item list-group-item-secondary"
+    >
+      <app-node [node]="node" [hasParent]="false" [tree]="TreeData"></app-node>
+    </li>
+  </ul>
+</div>

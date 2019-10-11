@@ -1,0 +1,64 @@
+<span class="container">
+  <span *ngIf="depth == 0">{{ node.name }}</span>
+  <span *ngIf="depth == 1" class="depth-1">
+    <label *ngIf="edit">
+      <input [(ngModel)]="node.name" placeholder="name" class="form-control" />
+    </label>
+    <label *ngIf="!edit">
+      {{ node.name }}
+    </label>
+    <button class="close" (click)="editName(node.name)">
+      <fa-icon *ngIf="edit" icon="check"></fa-icon>
+      <fa-icon *ngIf="!edit" icon="pen"></fa-icon>
+    </button>
+    <button *ngIf="edit" (click)="delete(parent, node)" class="close">
+      <fa-icon icon="trash"></fa-icon>
+    </button>
+  </span>
+  <span *ngIf="depth == 2" class="depth-2">
+    <label *ngIf="edit">
+      <input [(ngModel)]="node.name" placeholder="name" class="form-control" />
+    </label>
+    <label *ngIf="!edit">
+      {{ node.name }}
+    </label>
+    <button class="close" (click)="editName(node.name)">
+      <fa-icon *ngIf="edit" icon="check"></fa-icon>
+      <fa-icon *ngIf="!edit" icon="pen"></fa-icon>
+    </button>
+    <button *ngIf="edit" (click)="delete(parent, node)" class="close">
+      <fa-icon icon="trash"></fa-icon></button
+  ></span>
+
+  <button
+    *ngIf="depth == 0 || depth == 1"
+    type="button"
+    class="toggleBtn"
+    (click)="openNode()"
+  >
+    <fa-icon *ngIf="isOpen && !edit" icon="angle-down"></fa-icon>
+    <fa-icon *ngIf="!isOpen && !edit" icon="angle-right"></fa-icon>
+  </button>
+
+  <div
+    *ngIf="(node.depth === 0 || node.depth === 1) && !edit"
+    class="input-group inputBox"
+  >
+    <input
+      #newNode
+      (keyup.enter)="add(newNode.value)"
+      type="text"
+      class="form-control"
+      placeholder="Add more..."
+    />
+    <div class="input-group-append">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="add(newNode.value)"
+      >
+        +
+      </button>
+    </div>
+  </div>
+</span>

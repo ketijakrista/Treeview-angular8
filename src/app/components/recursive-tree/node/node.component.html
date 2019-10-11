@@ -1,0 +1,44 @@
+<button
+  *ngIf="hasChildren"
+  type="button"
+  class="toggleBtn"
+  (click)="toggleChildren()"
+>
+  <fa-icon *ngIf="areChildrenOpen" icon="angle-down"></fa-icon>
+  <fa-icon *ngIf="!areChildrenOpen" icon="angle-right"></fa-icon>
+</button>
+
+<span *ngIf="hasParent">
+  <label *ngIf="edit">
+    <input [(ngModel)]="node.name" placeholder="name" class="form-control" />
+  </label>
+  <label *ngIf="!edit">
+    {{ node.name }}
+  </label>
+
+  <button class="close" (click)="editName()">
+    <fa-icon *ngIf="edit" icon="check"></fa-icon>
+    <fa-icon *ngIf="!edit" icon="pen"></fa-icon>
+  </button>
+
+  <button *ngIf="edit" (click)="delete(parent, node)" class="close">
+    <fa-icon icon="trash"></fa-icon>
+  </button>
+</span>
+
+<span *ngIf="!hasParent">{{ node.name }}</span>
+
+<div>
+  <ul *ngIf="areChildrenOpen">
+    <li *ngFor="let child of node.children">
+      <app-node
+        [node]="child"
+        [hasParent]="true"
+        (toggleClicked)="toggleChildren()"
+        [parent]="node"
+        [tree]="tree"
+      ></app-node>
+    </li>
+    <app-add-node [node]="node" [tree]="tree"></app-add-node>
+  </ul>
+</div>

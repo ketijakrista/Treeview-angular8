@@ -1,0 +1,12 @@
+.input-group {
+  margin-top: 1rem;
+}
+
+.inputBox {
+  width: 200px;
+  transition: width 0.3s ease-in-out;
+}
+.inputBox:hover {
+  width: 600px;
+  transition: width 0.5s ease-in-out;
+}

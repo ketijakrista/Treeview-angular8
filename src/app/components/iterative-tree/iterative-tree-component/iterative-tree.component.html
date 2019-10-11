@@ -1,0 +1,22 @@
+<div class="container">
+  <ul>
+    <li class="list-group-item list-group-item-primary">
+      <span>Treeview iterative</span>
+    </li>
+
+    <li
+      *ngFor="let node of shownTree"
+      class="list-group-item list-group-item-secondary"
+    >
+      <app-iterative-tree-node
+        [node]="node"
+        [depth]="node.depth"
+        (open)="onOpen($event, node)"
+        (nodeToDelete)="onDelete(node)"
+        (newNodeName)="onAdd($event, node)"
+        (wasEdited)="onEdit($event, node)"
+      >
+      </app-iterative-tree-node>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<div class="input-group mb-3 inputBox">
+  <input
+    #newChild
+    (keyup.enter)="add(newChild.value, node)"
+    type="text"
+    class="form-control"
+    placeholder="Add new..."
+  />
+  <div class="input-group-append">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="add(newChild.value, node, tree)"
+    >
+      +
+    </button>
+  </div>
+</div>
